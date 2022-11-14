@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1052068581654",
+    "project_id": "theremin-synth",
+    "storage_bucket": "theremin-synth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052068581654:android:e637acf3df211bfae40037",
+        "android_client_info": {
+          "package_name": "com.example.theremin_synth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052068581654-rl7cbckujb3j5k8uekbs9i4g6oqr0gdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrO1gmfCEXjjXwfARqqcbb7pOoVt1HYEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052068581654-rl7cbckujb3j5k8uekbs9i4g6oqr0gdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
