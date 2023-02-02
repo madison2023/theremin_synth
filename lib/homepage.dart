@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,41 +11,90 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var note;
 
-  //getNote() async {
   final ref = FirebaseDatabase.instance.ref().child('notes/data');
-  //   final snapshot = await ref.child('notes/data').get();
-  //   if (snapshot.exists) {
-  //     print(snapshot.value);
-  //     setState(() {
-  //       note = snapshot.value;
-  //     });
-  //   } else {
-  //     print('No data available.');
-  //   }
-  // }
+
+  String getLetterNote(Object? midiNote) {
+    switch (midiNote) {
+      case 60:
+        {
+          return "C4";
+        }
+      case 61:
+        {
+          return "C#4/Db4";
+        }
+      case 62:
+        {
+          return "D4";
+        }
+      case 63:
+        {
+          return "D#4/Eb4";
+        }
+      case 64:
+        {
+          return "E4";
+        }
+      case 65:
+        {
+          return "F4";
+        }
+      case 66:
+        {
+          return "F#4/Gb4";
+        }
+      case 67:
+        {
+          return "G4";
+        }
+      case 68:
+        {
+          return "G#4/Ab4";
+        }
+      case 69:
+        {
+          return "A4";
+        }
+      case 70:
+        {
+          return "A#4/Bb4";
+        }
+      case 71:
+        {
+          return "B4";
+        }
+      case 72:
+        {
+          return "C5";
+        }
+      default:
+        {
+          return "Out of Range";
+        }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text("Theremin/Synth"),
+        title: const Text("Theremin"),
         backgroundColor: const Color.fromARGB(255, 155, 69, 170),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Midi Note", style: TextStyle(fontSize: 40)),
+            const Text("Note", style: TextStyle(fontSize: 40)),
             StreamBuilder(
-              stream: ref.onValue,
+              stream: ref
+                  .onValue, //triggers whenever the data is updated in the database
               builder: ((context, snapshot) {
                 if (snapshot.hasData &&
                     !snapshot.hasError &&
                     snapshot.data?.snapshot.value != null) {
                   return Text(
-                    snapshot.data!.snapshot.value.toString(),
+                    getLetterNote(snapshot.data!.snapshot.value),
                     style: const TextStyle(fontSize: 50),
                   );
                 }
@@ -54,23 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
               }),
             ),
           ],
-
-          // child: SleekCircularSlider(
-          //   min: 0,
-          //   max: 50,
-          //   initialValue: 1,
-          //   appearance: CircularSliderAppearance(
-          //       infoProperties: InfoProperties(bottomLabelText: 'Volume')),
-          //   onChange: (double value) {
-          //     // callback providing a value while its being changed (with a pan gesture)
-          //   },
-          //   onChangeStart: (double startValue) {
-          //     // callback providing a starting value (when a pan gesture starts)
-          //   },
-          //   onChangeEnd: (double endValue) {
-          //     // ucallback providing an ending value (when a pan gesture ends)
-          //   },
-          // ),
         ),
       ),
     );
